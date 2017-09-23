@@ -17,11 +17,14 @@ RUN R -e 'install.packages(c("data.table","dplyr","dtplyr"), repos="http://cran.
 #Install statistical packages
 RUN R -e 'install.packages(c("e1071","randomForest","glm"), repos="http://cran.us.r-project.org")'
 
+#Install tensorflow package
+RUN R -e 'install.packages(c("tensorflow"), repos="http://cran.us.r-project.org")'
+
 #Install ggplot packages
 RUN R -e 'install.packages(c("ggplot2","ggvis"), repos="http://cran.us.r-project.org")'
 
 #Install Caret Machine learning environments
-RUN R -e 'install.packages(c("caret","caretEnsemble"), repos="http://cran.us.r-project.org")'
+RUN R -e 'install.packages(c("caret","caretEnsemble","doMC"), repos="http://cran.us.r-project.org")'
 
 #Install Caret Machine learning environments
 RUN R -e 'install.packages(c("mlr"), repos="http://cran.us.r-project.org")'
