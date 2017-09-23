@@ -6,21 +6,26 @@ RUN export ADD=shiny && bash /etc/cont-init.d/add
 
 #Update ubuntu and install depencencies
 RUN apt-get update
-RUN apt-get install -y libxml2-dev
 
-#Install basic packages
+#Install shinydashboard packages
 RUN R -e 'install.packages(c("shinydashboard"), repos="http://cran.us.r-project.org")'
 
-#Install basic packages
+#Install basic packages to use datasets
 RUN R -e 'install.packages(c("data.table","dplyr","dtplyr"), repos="http://cran.us.r-project.org")'
 
 #Install statistical packages
 RUN R -e 'install.packages(c("e1071","randomForest","glm"), repos="http://cran.us.r-project.org")'
 
 #Install tensorflow package
+RUN apt-get -y install python-pip virtualenv
 RUN R -e 'install.packages(c("tensorflow"), repos="http://cran.us.r-project.org")'
+RUN R -e 'tensorflow::install_tensorflow()'
 
-#Install ggplot packages
+#Install keras package
+RUN R -e 'install.packages(c("keras"), repos="http://cran.us.r-project.org")'
+RUN R -e 'keras::install_keras()'
+
+#Install visualization packages
 RUN R -e 'install.packages(c("ggplot2","ggvis"), repos="http://cran.us.r-project.org")'
 
 #Install Caret Machine learning environments
@@ -29,11 +34,12 @@ RUN R -e 'install.packages(c("caret","caretEnsemble","doMC"), repos="http://cran
 #Install Caret Machine learning environments
 RUN R -e 'install.packages(c("mlr"), repos="http://cran.us.r-project.org")'
 
-#Install Spark
+#Install Spark support
 RUN R -e 'install.packages(c("sparklyr"), repos="http://cran.us.r-project.org")'
 
-#Install Connectors:
+#Install kafka connector:
 RUN R -e 'install.packages(c("rkafka"))'
 
-#Install Cloud Connectors:
+#Install s3 connector:
+RUN apt-get install -y libxml2-dev
 RUN R -e 'install.packages(c("aws.s3"))'
