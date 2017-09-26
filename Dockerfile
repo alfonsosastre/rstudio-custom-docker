@@ -35,6 +35,7 @@ RUN R -e 'install.packages(c("caret","caretEnsemble","doMC"), repos="http://cran
 RUN R -e 'install.packages(c("mlr"), repos="http://cran.us.r-project.org")'
 
 #Install Spark support
+RUN apt-get -y install openjdk-8-jdk
 RUN R -e 'install.packages(c("sparklyr"), repos="http://cran.us.r-project.org")'
 
 #Install kafka connector:
